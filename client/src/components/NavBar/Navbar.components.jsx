@@ -1,15 +1,24 @@
 import React from 'react'
-import Whitetinder from "../../Image/tinder_logo_white.png";
-import Colortinder from "../../Image/color-logo-tinder.png";
+import Whitelogo from "../../Image/tinder_logo_white.png";
+import Colorlogo from "../../Image/color-logo-tinder.png";
 
-const Navbar = () => {
+const Navbar = ({authToken, setShowModal,minimal, setIsSignUp, showModal}) => {
+
+  const clickHandler = () => {
+
+       setIsSignUp(false);
+       setShowModal(true);
+
+  }
+
   return (
     <>
     <nav className=" flex items-center py-4 px-10 justify-between   ">
       <div className="flex p-4 gap-10 items-center">
          <div className="w-40 ">
            <img
-              src= {Colortinder}
+
+              src= { minimal ? Colorlogo : Whitelogo }
               alt ="tinder logo"
               className="w-full h-full"
            />
@@ -25,9 +34,17 @@ const Navbar = () => {
            </div>
         
  
-         <button className=" py-2 px-8 text-red-500 text-2xl font-semibold rounded-md bg-gray-200">
-           Login
-         </button>
+         { 
+           !authToken && !minimal &&(
+            <button 
+            onClick={clickHandler}
+            disabled={showModal}
+            className=" py-2 px-8 text-red-500 text-2xl font-semibold rounded-md bg-gray-200">
+              Login
+            </button>
+           )
+
+         }
       
     </nav>
     

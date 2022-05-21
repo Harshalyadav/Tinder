@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useCookies } from "react-cookie";
+import { useCookie } from "react-cookie";
 
 const LoginModel = ({setShowModel , isSignUp })=>{
 
@@ -9,19 +9,36 @@ const LoginModel = ({setShowModel , isSignUp })=>{
      const [confirmPassword ,setConfirmPassword] =useState(null);
      const [error ,setError] = useState(null);
 
-     const [cookies ,setCookies ,removeCookies] = useCookies(null);
+    //  const [cookies ,setCookie ,removeCookies]=useCookie(null);
 
      const handelClick =()=>{
            setShowModel(false);
      };
 
-     const handelSubmit=()=>{
+     const handelSubmit=(e)=>{
+         e.preventDefault();
+         try{
+             if(isSignUp && password !== confirmPassword)
+             {
+                 setError("password need to match");
+                 return ;
+             }
+
+            
+            // setCookie('AuthToken', response.data.token)
+            // setCookie('UserId', response.data.userId)
+
+         }
+         catch(error){
+             console.log(error.message);
+         };
 
      };
  
     return (
-        <>
-               <div className="absloute h-600 my-auto mx-auto top-8 right-0 left-0 p-10 max-w-prose bg-white">
+        <>      
+               <div className=" relative w-full  h-full">     
+                         <div className="absloute h-600  m-auto top-2 right-0 left-0 p-10 max-w-prose bg-white">
                    
                        <div onClick={handelClick} className="float-right text-5xl  p-2 hover:cursor-pointer">ⓧ</div>
 
@@ -75,6 +92,7 @@ const LoginModel = ({setShowModel , isSignUp })=>{
                    </div>
 
                
+                   </div>
 
 
         </>
