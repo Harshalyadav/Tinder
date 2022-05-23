@@ -4,6 +4,8 @@ import Onboard from "./pages/Onboard";
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
+import {useCookies} from 'react-cookie'
+
 
 function App() {
   return (
